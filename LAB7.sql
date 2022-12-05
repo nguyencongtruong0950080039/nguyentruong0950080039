@@ -1,5 +1,5 @@
-﻿--Bai 1:Viết các hàm:
---➢ Nhập vào MaNV cho biết tuổi của nhân viên này.
+﻿--cau1 :viết các hàm:
+-- Nhập vào MaNV cho biết tuổi của nhân viên này.
 go
 create function fn_TuoiNV(@MaNV nvarchar(9))
 returns int
@@ -14,7 +14,7 @@ print 'Tuoi nhan vien:'+ convert(nvarchar,dbo.fn_TuoiNV('001'))
 
 go
 
---➢ Nhập vào Manv cho biết số lượng đề án nhân viên này đã tham gia
+---- Nhập vào Manv cho biết số lượng đề án nhân viên này đã tham gia
 go
 create function fn_DemDeAnNV(@MaNV varchar(9))
 returns int
@@ -27,7 +27,7 @@ go
 go
 print 'so Du an nhan vien da lam'+ convert(varchar, dbo.fn_DemDeAnNV('003'))
 go
---➢ Truyền tham số vào phái nam hoặc nữ, xuất số lượng nhân viên theo phái
+-- Truyền tham số vào phái nam hoặc nữ, xuất số lượng nhân viên theo phái
 go
 create function fn_DemNV_Phai(@Phai nvarchar(5)=N'%')
 returns int
@@ -41,7 +41,7 @@ go
 print 'So luong nhan vien nu:'+ convert(varchar, fn_DemNV_Phai(N'Nữ'))
 go
 
---➢ Truyền tham số đầu vào là tên phòng, tính mức lương trung bình của phòng đó, Cho biết
+-- Truyền tham số đầu vào là tên phòng, tính mức lương trung bình của phòng đó, Cho biết
 --họ tên nhân viên (HONV, TENLOT, TENNV) có mức lương trên mức lương trung bình
 --của phòng đó.
 go
@@ -62,7 +62,7 @@ as
 	end
 go
 
---➢ Tryền tham số đầu vào là Mã Phòng, cho biết tên phòng ban, họ tên người trưởng phòng
+-- Tryền tham số đầu vào là Mã Phòng, cho biết tên phòng ban, họ tên người trưởng phòng
 --và số lượng đề án mà phòng ban đó chủ trì.
 go
 create function fn_SoLuongDeAnTheoPB(@MaPB int)
@@ -80,9 +80,9 @@ begin
 end
 go
 
---Bài 2: 
+--cau2
 --Tạo các view:
---➢ Hiển thị thông tin HoNV,TenNV,TenPHG, DiaDiemPhg.
+-- Hiển thị thông tin HoNV,TenNV,TenPHG, DiaDiemPhg.
 go
 create view v_DD_PhongBan
 as
@@ -92,14 +92,14 @@ inner join NHANVIEN on NHANVIEN.PHG = PHONGBAN.MAPHG
 
 go
 
---➢ Hiển thị thông tin TenNv, Lương, Tuổi.
+-- Hiển thị thông tin TenNv, Lương, Tuổi.
 go
 create view v_TuoiNV
 as
 select TENNV,LUONG,YEAR(GETDATE())-YEAR(NGSINH) as 'Tuoi' from NHANVIEN
 go
 
---➢ Hiển thị tên phòng ban và họ tên trưởng phòng của phòng ban có đông nhân viên nhất
+-- Hiển thị tên phòng ban và họ tên trưởng phòng của phòng ban có đông nhân viên nhất
 go
 create view v_LuongNV_PB
 as
